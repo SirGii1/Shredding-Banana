@@ -1,0 +1,1218 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shredding Bananas ($SHB) - Cryptocurrency</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+    :root {
+        --bg-primary: #ffffff;
+        --bg-secondary: #f8f9fa;
+        --bg-ash: #e8eaed;
+        --text-primary: #1a1a1a;
+        --text-secondary: #5f6368;
+        --text-muted: #9aa0a6;
+        --ash-blue: #bdc1c6;
+        --ash-blue-light: #dadce0;
+        --ash-blue-dark: #9aa0a6;
+        --border: #e8eaed;
+        --shadow: rgba(0, 0, 0, 0.1);
+        --shadow-light: rgba(0, 0, 0, 0.05);
+    }
+
+    [data-theme="dark"] {
+        --bg-primary: #1a1a1a;
+        --bg-secondary: #2d2d2d;
+        --bg-ash: #404040;
+        --text-primary: #ffffff;
+        --text-secondary: #bdc1c6;
+        --text-muted: #9aa0a6;
+        --ash-blue: #5f6368;
+        --ash-blue-light: #9aa0a6;
+        --ash-blue-dark: #3c4043;
+        --border: #404040;
+        --shadow: rgba(0, 0, 0, 0.3);
+        --shadow-light: rgba(0, 0, 0, 0.15);
+    }
+
+    /* Animations */
+    @keyframes fadeInUp {
+        from {
+            opacity: 0;
+            transform: translateY(50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes slideInLeft {
+        from {
+            opacity: 0;
+            transform: translateX(-50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes slideInRight {
+        from {
+            opacity: 0;
+            transform: translateX(50px);
+        }
+        to {
+            opacity: 1;
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes slideInDown {
+        from {
+            opacity: 0;
+            transform: translateY(-30px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    @keyframes float {
+        0%, 100% { 
+            transform: translateY(0px) rotate(0deg); 
+        }
+        33% { 
+            transform: translateY(-10px) rotate(1deg); 
+        }
+        66% { 
+            transform: translateY(-5px) rotate(-1deg); 
+        }
+    }
+
+    @keyframes pulse {
+        0%, 100% { 
+            opacity: 1; 
+            transform: scale(1);
+        }
+        50% { 
+            opacity: 0.8;
+            transform: scale(1.05);
+        }
+    }
+
+    @keyframes bounceIn {
+        0% {
+            opacity: 0;
+            transform: scale(0.3) rotate(-10deg);
+        }
+        50% {
+            opacity: 1;
+            transform: scale(1.1) rotate(5deg);
+        }
+        100% {
+            opacity: 1;
+            transform: scale(1) rotate(0deg);
+        }
+    }
+
+    @keyframes shimmer {
+        0% {
+            background-position: -200% 0;
+        }
+        100% {
+            background-position: 200% 0;
+        }
+    }
+
+    @keyframes glow {
+        0%, 100% {
+            box-shadow: 0 0 5px var(--ash-blue);
+        }
+        50% {
+            box-shadow: 0 0 20px var(--ash-blue), 0 0 30px var(--ash-blue-light);
+        }
+    }
+
+    @keyframes typewriter {
+        from { width: 0; }
+        to { width: 100%; }
+    }
+
+    @keyframes blink {
+        0%, 50% { border-color: transparent; }
+        51%, 100% { border-color: var(--text-primary); }
+    }
+
+    /* Enhanced scroll animations */
+    @keyframes fadeInScale {
+        from {
+            opacity: 0;
+            transform: scale(0.8) translateY(30px);
+        }
+        to {
+            opacity: 1;
+            transform: scale(1) translateY(0);
+        }
+    }
+
+    @keyframes rotateIn {
+        from {
+            opacity: 0;
+            transform: rotate(-180deg) scale(0.5);
+        }
+        to {
+            opacity: 1;
+            transform: rotate(0deg) scale(1);
+        }
+    }
+
+    /* Animation Classes */
+    .hero-content {
+        animation: fadeInUp 1.2s ease-out;
+    }
+
+    .hero-logo {
+        animation: float 6s ease-in-out infinite, bounceIn 1s ease-out;
+    }
+
+    .hero h1 {
+        animation: slideInDown 1s ease-out 0.3s both;
+    }
+
+    .hero-subtitle {
+        animation: slideInLeft 1s ease-out 0.6s both;
+    }
+
+    .hero-description {
+        animation: fadeInUp 1s ease-out 0.9s both;
+    }
+
+    .cta-button {
+        animation: bounceIn 1s ease-out 1.2s both;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .cta-button::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+        transition: left 0.5s;
+    }
+
+    .cta-button:hover::before {
+        left: 100%;
+    }
+
+    .feature {
+        animation: fadeInScale 0.8s ease-out forwards;
+        animation-delay: calc(var(--delay) * 0.3s);
+        opacity: 0;
+        transform: scale(0.8) translateY(30px);
+    }
+
+    .feature:hover .feature-number {
+        animation: pulse 2s infinite;
+    }
+
+    .social-link {
+        animation: slideInLeft 0.8s ease-out forwards;
+        animation-delay: calc(var(--delay) * 0.2s);
+        opacity: 0;
+    }
+
+    .social-link:hover .social-icon {
+        animation: rotateIn 0.5s ease-out;
+    }
+
+    .stat {
+        animation: fadeInUp 0.6s ease-out forwards;
+        animation-delay: calc(var(--index, 0) * 0.1s);
+        opacity: 0;
+    }
+
+    .logo-container:hover .logo-img {
+        animation: pulse 1s ease-out;
+    }
+
+    .theme-toggle:hover {
+        animation: glow 1s ease-out;
+    }
+
+    /* Scroll-triggered animations */
+    .section-title {
+        animation: fadeInUp 0.8s ease-out forwards;
+        opacity: 0;
+    }
+
+    .section-subtitle {
+        animation: fadeInUp 0.8s ease-out 0.2s forwards;
+        opacity: 0;
+    }
+
+    /* Enhanced contact bar animations */
+    .contact-item {
+        animation: slideInDown 0.5s ease-out forwards;
+        animation-delay: calc(var(--index, 0) * 0.1s);
+        opacity: 0;
+    }
+
+    body {
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Inter', sans-serif;
+        background: var(--bg-primary);
+        color: var(--text-primary);
+        line-height: 1.6;
+        transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 40px;
+    }
+
+    /* Contact Bar - Now Horizontal */
+    .contact-bar {
+        background: var(--ash-blue-light);
+        padding: 12px 0;
+        border-bottom: 1px solid var(--border);
+        position: fixed;
+        top: 0;
+        width: 100%;
+        z-index: 1001;
+    }
+
+    .contact-info {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 40px;
+        font-size: 14px;
+        color: var(--text-secondary);
+        font-weight: 500;
+        flex-wrap: wrap;
+    }
+
+    .contact-item {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        color: var(--text-secondary);
+        padding: 6px 12px;
+        border-radius: 20px;
+        white-space: nowrap;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .contact-item::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+        transition: left 0.5s;
+    }
+
+    .contact-item:hover {
+        color: var(--text-primary);
+        background: var(--bg-primary);
+        transform: translateY(-2px) scale(1.05);
+        box-shadow: 0 4px 12px var(--shadow);
+    }
+
+    .contact-item:hover::before {
+        left: 100%;
+    }
+
+    .contact-separator {
+        color: var(--ash-blue);
+        font-weight: 300;
+        animation: pulse 2s infinite;
+    }
+
+    .contact-address {
+        font-family: 'SF Mono', Monaco, monospace;
+        font-size: 12px;
+        padding: 6px 12px;
+        background: var(--bg-primary);
+        border-radius: 15px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        max-width: 200px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: none; /* Hide from contact bar */
+    }
+
+    .contact-address:hover {
+        background: var(--bg-secondary);
+        transform: translateY(-1px);
+    }
+
+    /* Header */
+    header {
+        position: fixed;
+        top: 48px;
+        width: 100%;
+        background: rgba(248, 249, 250, 0.95);
+        backdrop-filter: blur(20px);
+        z-index: 1000;
+        border-bottom: 1px solid var(--border);
+    }
+
+    [data-theme="dark"] header {
+        background: rgba(26, 26, 26, 0.95);
+    }
+
+    nav {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 20px 0;
+    }
+
+    .logo-container {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+    }
+
+    .logo-img {
+        width: 40px;
+        height: 40px;
+        border-radius: 8px;
+    }
+
+    .logo-text {
+        font-size: 20px;
+        font-weight: 700;
+        color: var(--text-primary);
+        letter-spacing: -0.3px;
+    }
+
+    .theme-toggle {
+        background: var(--bg-secondary);
+        border: 1px solid var(--ash-blue);
+        color: var(--text-secondary);
+        padding: 10px 20px;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        font-size: 13px;
+        font-weight: 500;
+        position: relative;
+        overflow: hidden;
+    }
+
+    .theme-toggle::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+        transition: left 0.5s;
+    }
+
+    .theme-toggle:hover {
+        background: var(--ash-blue-light);
+        color: var(--text-primary);
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px var(--shadow);
+    }
+
+    .theme-toggle:hover::before {
+        left: 100%;
+    }
+
+    /* Hero Section */
+    .hero {
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        padding-top: 120px;
+        background: linear-gradient(135deg, var(--bg-primary) 0%, var(--bg-secondary) 50%, var(--bg-ash) 100%);
+    }
+
+    .hero-content {
+        max-width: 800px;
+    }
+
+    .hero-logo {
+        width: 100px;
+        height: 100px;
+        margin: 0 auto 40px;
+        border-radius: 16px;
+    }
+
+    .hero h1 {
+        font-size: 64px;
+        font-weight: 300;
+        margin-bottom: 20px;
+        color: var(--text-primary);
+        letter-spacing: -2px;
+        line-height: 1.1;
+    }
+
+    .hero-subtitle {
+        font-size: 18px;
+        color: var(--ash-blue-dark);
+        margin-bottom: 40px;
+        font-weight: 400;
+        letter-spacing: 3px;
+        text-transform: uppercase;
+    }
+
+    .hero-description {
+        font-size: 20px;
+        color: var(--text-secondary);
+        margin-bottom: 60px;
+        line-height: 1.8;
+        font-weight: 300;
+    }
+
+    .cta-button {
+        display: inline-block;
+        background: var(--text-primary);
+        color: var(--bg-primary);
+        padding: 16px 40px;
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 16px;
+        transition: all 0.3s ease;
+        letter-spacing: 0.5px;
+        border: 2px solid var(--text-primary);
+        border-radius: 6px;
+    }
+
+    .cta-button:hover {
+        background: transparent;
+        color: var(--text-primary);
+        transform: translateY(-2px);
+    }
+
+    /* About Section */
+    .section {
+        padding: 100px 0;
+    }
+
+    .section-title {
+        font-size: 48px;
+        font-weight: 300;
+        text-align: center;
+        margin-bottom: 30px;
+        color: var(--text-primary);
+        letter-spacing: -1px;
+    }
+
+    .section-subtitle {
+        font-size: 18px;
+        color: var(--text-secondary);
+        text-align: center;
+        margin-bottom: 80px;
+        max-width: 600px;
+        margin-left: auto;
+        margin-right: auto;
+        line-height: 1.8;
+        font-weight: 300;
+    }
+
+    /* Features Grid */
+    .features {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 60px;
+        margin-top: 100px;
+    }
+
+    .feature {
+        text-align: center;
+        padding: 60px 40px;
+        transition: all 0.3s ease;
+    }
+
+    .feature:hover {
+        transform: translateY(-5px);
+    }
+
+    .feature-number {
+        font-size: 48px;
+        font-weight: 100;
+        color: var(--ash-blue);
+        margin-bottom: 30px;
+        line-height: 1;
+    }
+
+    .feature h3 {
+        font-size: 24px;
+        font-weight: 400;
+        margin-bottom: 20px;
+        color: var(--text-primary);
+        letter-spacing: -0.5px;
+    }
+
+    .feature p {
+        color: var(--text-secondary);
+        line-height: 1.7;
+        font-size: 16px;
+        font-weight: 300;
+    }
+
+    /* Stats Section */
+    .stats {
+        background: var(--bg-secondary);
+        padding: 80px 0;
+    }
+
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 40px;
+        text-align: center;
+    }
+
+    .stat h3 {
+        font-size: 40px;
+        font-weight: 100;
+        color: var(--text-primary);
+        margin-bottom: 10px;
+    }
+
+    .stat p {
+        color: var(--text-secondary);
+        font-size: 14px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    /* Social Section */
+    .social {
+        padding: 100px 0;
+        text-align: center;
+    }
+
+    .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 60px;
+        margin-top: 60px;
+    }
+
+    .social-link {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        color: var(--text-secondary);
+        text-decoration: none;
+        transition: all 0.3s ease;
+        padding: 40px 20px;
+    }
+
+    .social-link:hover {
+        color: var(--text-primary);
+        transform: translateY(-5px);
+    }
+
+    .social-icon {
+        width: 32px;
+        height: 32px;
+        opacity: 0.7;
+        transition: opacity 0.3s ease;
+    }
+
+    .social-link:hover .social-icon {
+        opacity: 1;
+    }
+
+    .social-text {
+        font-size: 14px;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+    }
+
+    /* Footer */
+    footer {
+        background: var(--bg-ash);
+        padding: 60px 0;
+        text-align: center;
+    }
+
+    .footer-content {
+        max-width: 800px;
+        margin: 0 auto;
+    }
+
+    .footer-title {
+        font-size: 24px;
+        font-weight: 400;
+        margin-bottom: 30px;
+        color: var(--text-primary);
+    }
+
+    .footer-contract {
+        background: var(--bg-primary);
+        padding: 25px;
+        margin: 30px 0;
+        border-left: 3px solid var(--ash-blue);
+        border-radius: 8px;
+        position: relative;
+        overflow: hidden;
+        transition: all 0.3s ease;
+    }
+
+    .footer-contract::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+        transition: left 0.6s;
+    }
+
+    .footer-contract:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px var(--shadow);
+    }
+
+    .footer-contract:hover::before {
+        left: 100%;
+    }
+
+    .footer-contract-label {
+        font-size: 12px;
+        color: var(--text-muted);
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .footer-contract-label::before {
+        content: '📋';
+        animation: bounce 2s infinite;
+    }
+
+    @keyframes bounce {
+        0%, 100% { transform: translateY(0); }
+        50% { transform: translateY(-3px); }
+    }
+
+    .footer-contract-address {
+        font-family: 'SF Mono', Monaco, monospace;
+        font-size: 14px;
+        color: var(--text-primary);
+        word-break: break-all;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        background: var(--bg-secondary);
+        padding: 12px;
+        border-radius: 6px;
+        border: 1px solid var(--border);
+    }
+
+    .footer-contract-address:hover {
+        color: var(--ash-blue-dark);
+        background: var(--ash-blue-light);
+        transform: scale(1.02);
+        animation: glow 1s ease-out;
+    }
+
+    .footer-contract-address::after {
+        content: 'Click to copy';
+        position: absolute;
+        top: -35px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--text-primary);
+        color: var(--bg-primary);
+        padding: 6px 12px;
+        border-radius: 4px;
+        font-size: 11px;
+        white-space: nowrap;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+    }
+
+    .footer-contract-address:hover::after {
+        opacity: 1;
+    }
+
+    .footer-links {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        margin: 40px 0;
+    }
+
+    .footer-link {
+        color: var(--text-secondary);
+        text-decoration: none;
+        font-size: 14px;
+        transition: color 0.2s ease;
+    }
+
+    .footer-link:hover {
+        color: var(--text-primary);
+    }
+
+    .footer-note {
+        color: var(--text-muted);
+        font-size: 12px;
+        line-height: 1.6;
+    }
+
+    /* Toast */
+    .toast {
+        position: fixed;
+        top: 120px;
+        right: 40px;
+        background: var(--text-primary);
+        color: var(--bg-primary);
+        padding: 16px 24px;
+        border-radius: 6px;
+        font-size: 14px;
+        font-weight: 500;
+        transform: translateX(400px);
+        transition: all 0.3s ease;
+        z-index: 1002;
+        box-shadow: 0 4px 12px var(--shadow);
+    }
+
+    .toast.show {
+        transform: translateX(0);
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+        .container {
+            padding: 0 20px;
+        }
+
+        .contact-info {
+            gap: 20px;
+            padding: 8px 0;
+        }
+
+        .contact-item {
+            font-size: 12px;
+            padding: 4px 8px;
+        }
+
+        .contact-address {
+            font-size: 11px;
+            max-width: 150px;
+        }
+
+        .contact-separator {
+            display: none;
+        }
+
+        header {
+            top: 48px;
+        }
+
+        .hero {
+            padding-top: 140px;
+        }
+
+        .hero h1 {
+            font-size: 40px;
+        }
+
+        .hero-subtitle {
+            font-size: 14px;
+            letter-spacing: 2px;
+        }
+
+        .hero-description {
+            font-size: 16px;
+        }
+
+        .section-title {
+            font-size: 32px;
+        }
+
+        .features {
+            grid-template-columns: 1fr;
+            gap: 40px;
+        }
+
+        .feature {
+            padding: 40px 20px;
+        }
+
+        .social-links {
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .social-link {
+            flex-direction: row;
+            justify-content: center;
+            padding: 20px;
+        }
+
+        .footer-links {
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .stats-grid {
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .contact-info {
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .contact-item {
+            justify-content: center;
+        }
+
+        .hero {
+            padding-top: 160px;
+        }
+    }
+</style>
+```
+
+</head>
+<body data-theme="light">
+    <!-- Contact Bar -->
+    <div class="contact-bar">
+        <div class="container">
+            <div class="contact-info">
+                <a href="https://t.me/+kFzTcytyfjk2NDhk" class="contact-item" target="_blank" style="--index: 0;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0C5.374 0 0 5.373 0 12s5.374 12 12 12 12-5.373 12-12S18.626 0 12 0zm5.568 8.16c-.181 1.958-.962 6.502-1.359 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.692-1.653-1.123-2.678-1.799-1.185-.781-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.139-5.062 3.345-.48.33-.913.492-1.302.487-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                    </svg>
+                    <span>Telegram</span>
+                </a>
+                <span class="contact-separator">•</span>
+                <a href="https://x.com/cryptocoin672?s=21" class="contact-item" target="_blank" style="--index: 1;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                    <span>Twitter</span>
+                </a>
+                <span class="contact-separator">•</span>
+                <a href="https://pump.fun/xtEUeEtG8h5ybk3v2CnyYykM9f3Ljf6cpRexwMHpump" class="contact-item" target="_blank" style="--index: 2;">
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4V7zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                    </svg>
+                    <span>Pump.fun</span>
+                </a>
+            </div>
+        </div>
+    </div>
+
+
+<!-- Header -->
+<header>
+    <nav class="container">
+        <a href="#" class="logo-container">
+            <img src="https://i.postimg.cc/XJD793QN/46da3ca9-1abc-4fed-80ee-c99b73b69e29.jpg" alt="SHB Logo" class="logo-img">
+            <span class="logo-text">Shredding Bananas</span>
+        </a>
+        <button class="theme-toggle" onclick="toggleTheme()">🌙 Dark</button>
+    </nav>
+</header>
+
+<main>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <img src="https://i.postimg.cc/XJD793QN/46da3ca9-1abc-4fed-80ee-c99b73b69e29.jpg" alt="SHB Logo" class="hero-logo">
+                <h1>Shredding Bananas</h1>
+                <div class="hero-subtitle">$SHB Token</div>
+                <p class="hero-description">
+                    A fresh new cryptocurrency project just getting started. 
+                    Join us early as we build something amazing together in the world of DeFi.
+                </p>
+                <a href="https://pump.fun/xtEUeEtG8h5ybk3v2CnyYykM9f3Ljf6cpRexwMHpump" class="cta-button" target="_blank">
+                    Trade Now
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section class="section">
+        <div class="container">
+            <h2 class="section-title">About $SHB</h2>
+            <p class="section-subtitle">
+                We're just getting started! Shredding Bananas is a new cryptocurrency project 
+                building a community-driven token with exciting plans ahead.
+            </p>
+            
+            <div class="features">
+                <div class="feature" style="--delay: 1;">
+                    <div class="feature-number">01</div>
+                    <h3>Just Launched</h3>
+                    <p>We're a brand new project that recently launched on Pump.fun. This is the perfect time to get in early and be part of our growing community from the ground up.</p>
+                </div>
+                <div class="feature" style="--delay: 2;">
+                    <div class="feature-number">02</div>
+                    <h3>Community First</h3>
+                    <p>We believe in building together. Join our Telegram and Twitter to connect with other early supporters and help shape the future direction of our project.</p>
+                </div>
+                <div class="feature" style="--delay: 3;">
+                    <div class="feature-number">03</div>
+                    <h3>Big Plans Ahead</h3>
+                    <p>While we're starting small, we have ambitious goals. Stay tuned for exciting developments, partnerships, and community events as we grow.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat" style="--index: 0;">
+                    <h3>New</h3>
+                    <p>Recently Launched</p>
+                </div>
+                <div class="stat" style="--index: 1;">
+                    <h3>24/7</h3>
+                    <p>Available on Pump.fun</p>
+                </div>
+                <div class="stat" style="--index: 2;">
+                    <h3>Growing</h3>
+                    <p>Community</p>
+                </div>
+                <div class="stat" style="--index: 3;">
+                    <h3>Early</h3>
+                    <p>Opportunity</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Social Section -->
+    <section class="social">
+        <div class="container">
+            <h2 class="section-title">Join Our Community</h2>
+            <p class="section-subtitle">
+                Connect with early supporters and be part of our journey from the very beginning. 
+                Every great project starts with a strong community.
+            </p>
+            <div class="social-links">
+                <a href="https://t.me/+kFzTcytyfjk2NDhk" class="social-link" style="--delay: 1;" target="_blank">
+                    <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M12 0C5.374 0 0 5.373 0 12s5.374 12 12 12 12-5.373 12-12S18.626 0 12 0zm5.568 8.16c-.181 1.958-.962 6.502-1.359 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.692-1.653-1.123-2.678-1.799-1.185-.781-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.139-5.062 3.345-.48.33-.913.492-1.302.487-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/>
+                    </svg>
+                    <span class="social-text">Telegram</span>
+                </a>
+                <a href="https://x.com/cryptocoin672?s=21" class="social-link" style="--delay: 2;" target="_blank">
+                    <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.80l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                    </svg>
+                    <span class="social-text">Twitter</span>
+                </a>
+                <a href="https://pump.fun/xtEUeEtG8h5ybk3v2CnyYykM9f3Ljf6cpRexwMHpump" class="social-link" style="--delay: 3;" target="_blank">
+                    <svg class="social-icon" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M13 7h-2v4H7v2h4v4h2v-4h4v-2h-4V7zm-1-5C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8z"/>
+                    </svg>
+                    <span class="social-text">Pump.fun</span>
+                </a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<!-- Footer -->
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <h3 class="footer-title">Shredding Bananas ($SHB)</h3>
+            
+            <div class="footer-contract">
+                <div class="footer-contract-label">Contract Address</div>
+                <div class="footer-contract-address" onclick="copyContract()">
+                    xtEUeEtG8h5ybk3v2CnyYykM9f3Ljf6cpRexwMHpump
+                </div>
+            </div>
+
+            <div class="footer-links">
+                <a href="https://t.me/+kFzTcytyfjk2NDhk" class="footer-link" target="_blank">Telegram</a>
+                <a href="https://x.com/cryptocoin672?s=21" class="footer-link" target="_blank">Twitter</a>
+                <a href="https://pump.fun/xtEUeEtG8h5ybk3v2CnyYykM9f3Ljf6cpRexwMHpump" class="footer-link" target="_blank">Trade</a>
+            </div>
+
+            <p class="footer-note">
+                © 2024 Shredding Bananas. All rights reserved.<br>
+                This is not financial advice. Cryptocurrency investments carry risk.
+            </p>
+        </div>
+    </div>
+</footer>
+
+<div class="toast" id="toast">
+    Contract address copied to clipboard
+</div>
+
+<script>
+    function toggleTheme() {
+        const body = document.body;
+        const toggle = document.querySelector('.theme-toggle');
+        const currentTheme = body.getAttribute('data-theme');
+        
+        if (currentTheme === 'light') {
+            body.setAttribute('data-theme', 'dark');
+            toggle.innerHTML = '☀️ Light';
+        } else {
+            body.setAttribute('data-theme', 'light');
+            toggle.innerHTML = '🌙 Dark';
+        }
+    }
+
+    function copyContract() {
+        const address = 'xtEUeEtG8h5ybk3v2CnyYykM9f3Ljf6cpRexwMHpump';
+        navigator.clipboard.writeText(address).then(function() {
+            showToast();
+        }).catch(function() {
+            const textArea = document.createElement('textarea');
+            textArea.value = address;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            showToast();
+        });
+    }
+
+    function showToast() {
+        const toast = document.getElementById('toast');
+        toast.classList.add('show');
+        setTimeout(() => {
+            toast.classList.remove('show');
+        }, 3000);
+    }
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            if (target) {
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+
+    // Initialize animations and observers
+    document.addEventListener('DOMContentLoaded', function() {
+        const toggle = document.querySelector('.theme-toggle');
+        const currentTheme = document.body.getAttribute('data-theme');
+        toggle.innerHTML = currentTheme === 'light' ? '🌙 Dark' : '☀️ Light';
+
+        // Intersection Observer for scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0) scale(1)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animated elements
+        document.querySelectorAll('.section-title, .section-subtitle, .feature, .stat, .social-link').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Add stagger animation to stats
+        const stats = document.querySelectorAll('.stat');
+        stats.forEach((stat, index) => {
+            stat.style.setProperty('--index', index);
+        });
+
+        // Enhanced copy functionality with animation
+        window.copyContract = function() {
+            const address = 'xtEUeEtG8h5ybk3v2CnyYykM9f3Ljf6cpRexwMHpump';
+            const contractEl = document.querySelector('.footer-contract-address');
+            
+            // Add copy animation
+            contractEl.style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                contractEl.style.transform = 'scale(1.02)';
+            }, 100);
+            setTimeout(() => {
+                contractEl.style.transform = 'scale(1)';
+            }, 200);
+            
+            navigator.clipboard.writeText(address).then(function() {
+                showToast();
+            }).catch(function() {
+                const textArea = document.createElement('textarea');
+                textArea.value = address;
+                document.body.appendChild(textArea);
+                textArea.select();
+                document.execCommand('copy');
+                document.body.removeChild(textArea);
+                showToast();
+            });
+        };
+
+        // Add hover animations to contact items
+        document.querySelectorAll('.contact-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-2px) scale(1.05)';
+            });
+            item.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+    });
+</script>
+
+
+</body>
+</html>
